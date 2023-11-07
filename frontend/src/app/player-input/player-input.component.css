@@ -1,0 +1,54 @@
+.content {
+    padding: 35px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.button {
+    font-family: 'TechnologyBold';
+    font-size: calc(9vh - 45px);
+    background-color:#294275;
+    color: #fff;
+    border:1.5px solid white;
+    border-radius:20px;
+    min-height: calc(5vw - 65px);
+    min-width: calc( 30vh - 20px);
+    margin: 150px auto;
+    position: relative;
+}
+
+.button:focus {
+    outline-color: transparent;
+    outline-style:solid;
+    box-shadow: 0 0 0 4px #a73742;
+    transition: 0.7s;
+}
+
+
+p {
+    font-family: 'Technology';
+    min-width: calc( 85vh - 750px );
+    font-size: calc( 9vh - 45px );
+    color: #a73742;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.content input {
+    margin: 0 auto;
+    font-family: 'TechnologyBold';
+    font-size: calc( 9vh - 45px );
+    background-color:#294275;
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: calc( 6vw - 60px );
+    min-height: calc( 6vw - 95px );
+    min-width: calc( 85vh - 750px );
+    border:1.5px solid white;
+    border-radius:10px; 
+    padding:25px;
+    text-transform: uppercase;
+    text-align: center;
+    position: inherit;
+}
