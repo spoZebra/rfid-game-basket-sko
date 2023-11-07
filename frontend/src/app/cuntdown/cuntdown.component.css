@@ -1,0 +1,24 @@
+.content {
+    padding: calc( 18vh - 100px );
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+p {
+    font-family: 'Technology';
+    min-width: calc( 85vh - 750px );
+    font-size: calc( 9vh - 45px );
+    color: #a73742;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'TechnologyBold';
+    min-width: calc( 85vh - 750px );
+    font-size: calc( 20vh - 45px );
+    color: #a73742;
+    text-transform: uppercase;
+    text-align: center;
+}
