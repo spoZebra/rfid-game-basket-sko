@@ -40,8 +40,14 @@ export class PlayerInputComponent implements OnInit {
 
   navigateToGame() {
     console.log(this.playerName.nativeElement.value);
-    this.dbService.insertPlayer(this.playerName.nativeElement.value,100)
     this.playerService.setPlayerName(this.playerName.nativeElement.value);
+
+    if (this.playerName.nativeElement.value.toUpperCase() != "TEST") {
+      this.dbService.insertPlayer(this.playerName.nativeElement.value, 100)
+    } else {
+      console.log("Test player detected, skipping insertion...")
+    }
+
     this.router.navigate(['/cuntdown'])
   }
 }
