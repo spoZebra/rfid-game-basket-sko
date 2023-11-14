@@ -43,7 +43,7 @@ export class PlayerInputComponent implements OnInit {
     this.playerService.setPlayerName(this.playerName.nativeElement.value);
 
     if (this.playerName.nativeElement.value.toUpperCase() != "TEST") {
-      this.dbService.insertPlayer(this.playerName.nativeElement.value, 100)
+      this.dbService.insertPlayer(this.playerName.nativeElement.value.toUpperCase(), 100)
     } else {
       console.log("Test player detected, skipping insertion...")
     }

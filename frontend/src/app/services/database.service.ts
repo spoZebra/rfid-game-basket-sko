@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import firebase from "firebase/compat/app";
 import {environment} from "../../environments/environment";
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +28,26 @@ export class DbService {
   }
 
   async insertPlayer(name: string, points: number) {
-    await firebase.firestore().collection('players').add({
-      name: name.toUpperCase(),
-      points: points,
-      date: new Date().toISOString()
-    });
+    const docRef = firebase.firestore().collection("players").doc(name)
+    docRef.get().then(doc => {
+        if (doc.exists && points > doc.get("points")) {
+          console.log("Player already exists, updating the score")
+          docRef.set({
+              name: name,
+              points: points,
+              date: new Date().toISOString()
+            }
+          )
+        } else if (!doc.exists) {
+          console.log("New player detected, insert new record")
+          firebase.firestore().collection('players').doc(name).set({
+            name: name,
+            points: points,
+            date: new Date().toISOString()
+          });
+        }
+      }
+    )
   }
 
   async getPlayers() {
