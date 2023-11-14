@@ -1,0 +1,84 @@
+@media (max-height: 2160px) {
+  .content {
+    padding: calc(10vh - 1400px);
+    margin-left: 350px;
+    margin-right: 60px;
+    margin-top: auto;
+    overflow-y: auto;
+    max-height: calc(138vh - 1500px);
+  }
+}
+
+@media (max-height: 1600px) {
+  .content {
+    padding: calc(10vh - 150px);
+    margin-top: auto;
+    margin-left: 180px;
+    margin-right: 0;
+    overflow-y: auto;
+    max-height: calc(102vh - 800px);
+  }
+}
+
+@media (max-height: 1400px) {
+  .content {
+    padding: calc(6vh - 150px);
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 0;
+    overflow-y: auto;
+    max-height: calc(65vh - 100px);
+  }
+}
+
+@media (max-height: 1200px) {
+  .content {
+    padding: calc(6vh - 100px);
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 0;
+    overflow-y: auto;
+    max-height: calc(70vh - 300px);
+  }
+}
+
+@media (max-height: 1080px) {
+  .content {
+    padding: calc(6vh - 300px);
+    margin-top: auto;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-y: auto;
+    max-height: calc(80vh - 300px);
+  }
+}
+
+.no-horizontal-scrollbar {
+  /* Keeps the horizontal scrollbar hidden */
+  overflow-x: hidden;
+}
+
+.no-vertical-scrollbar {
+  /* Keeps the vertical scrollbar hidden */
+  overflow-y: hidden;
+}
+
+.no-scrollbars {
+  /* Keeps both the horizontal and vertical
+     scrollbars hidden */
+  overflow: hidden;
+}
+
+table {
+  width: auto;
+  text-align: center;
+}
+
+tr, td {
+  font-family: 'Technology';
+  min-width: calc(85vh - 750px);
+  font-size: calc(9vh - 45px);
+  color: #ffffff;
+  text-transform: uppercase;
+  border-top: none;
+}

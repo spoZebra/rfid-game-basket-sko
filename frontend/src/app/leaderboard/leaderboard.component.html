@@ -1,1 +1,10 @@
-<p>leaderboard works!</p>
+<div #tableContainer class="content">
+  <table class="table" [@scrollAnimation]="animationState">
+    <tbody>
+    <tr *ngFor="let player of players">
+      <td>{{ player.name }}</td>
+      <td>{{ player.points }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

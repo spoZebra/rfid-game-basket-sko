@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { PlayerInputComponent } from './player-input/player-input.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { CuntdownComponent } from './cuntdown/cuntdown.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,8 @@ import { CuntdownComponent } from './cuntdown/cuntdown.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
