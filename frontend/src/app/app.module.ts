@@ -7,16 +7,15 @@ import { PlayerInputComponent } from './player-input/player-input.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { CuntdownComponent } from './cuntdown/cuntdown.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerInputComponent,
     LeaderboardComponent,
-    CuntdownComponent
+    CuntdownComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
