@@ -28,7 +28,7 @@ export class LeaderboardComponent implements OnInit {
   ngOnInit() {
     this.dbService.getPlayers().then((players) => {
       this.players = players;
-      this.startScrolling();
+      //this.startScrolling();
     });
   }
 
