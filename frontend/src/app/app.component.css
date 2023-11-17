@@ -12,7 +12,12 @@
   min-height: 100vh;
 }
 
+.top-logo-container {
+  text-align: center;
+}
+
 .top-logo {
   padding: 35px;
   max-height: 30vh
 }
+

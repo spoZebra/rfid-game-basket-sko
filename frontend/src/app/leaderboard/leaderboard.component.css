@@ -32,11 +32,6 @@
   }
 }
 
-table {
-  width: 90vmin;
-  text-align: center;
-}
-
 tr, td {
   font-family: 'Technology';
   width: 90vmin;
