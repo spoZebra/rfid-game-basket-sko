@@ -15,7 +15,7 @@ services:
           - mosquitto_go_net
       # Make mosquitto reachable from outside (FX reader)
       hostname: "$host_name"
-  angular-app:
+  angular-sko-app:
     image: 'angular-app'
     build: '../frontend/'
     ports:

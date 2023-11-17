@@ -4,6 +4,8 @@ import {PlayerService} from "../services/player.service";
 import {DbService} from "../services/database.service";
 import {GameConstants} from "../app-constants";
 import {Howl} from "howler";
+import { ZebraIoTConnectorService } from '../services/zebra-iot-connector-service';
+import { ReadTagEventModel } from '../models/reat-tag-event-model';
 
 @Component({
   selector: 'app-game',
@@ -19,11 +21,29 @@ export class GameComponent implements OnInit {
     loop: false
   });
 
-  constructor(private router: Router, private playerService: PlayerService, private dbService: DbService) {
+  constructor(private router: Router, private playerService: PlayerService, private dbService: DbService, private zIoTConnectorService : ZebraIoTConnectorService) {
   }
 
   ngOnInit() {
+    this.configureIot()
     this.startGameTime()
+  }
+
+    configureIot(){
+      
+      this.zIoTConnectorService.newTagAccessOpEvent.subscribe((tagData: ReadTagEventModel) => {
+        // Check if we've received an array of tag or just one tag
+        if (Array.isArray(tagData.data)) {
+          tagData.data.forEach(singleData => {
+            this.points++
+          })
+        }
+        else{
+          this.points++
+        } 
+      })
+      this.zIoTConnectorService.setReadMode()
+      this.zIoTConnectorService.startOperation()
   }
 
   startGameTime() {
@@ -42,6 +62,10 @@ export class GameComponent implements OnInit {
 
   moveToLeaderboard() {
     setTimeout(() => {
+
+      // Stop reading
+      this.zIoTConnectorService.stopOperation()
+
       this.router.navigate(['/leaderboard']);
     }, GameConstants.GAME_END_TIMEOUT * 1000);
   }
