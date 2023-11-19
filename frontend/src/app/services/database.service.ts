@@ -28,32 +28,39 @@ export class DbService {
   }
 
   async insertPlayer(name: string, points: number) {
-    const docRef = firebase.firestore().collection("players").doc(name)
-    docRef.get().then(doc => {
-        if (doc.exists && points > doc.get("points")) {
-          console.log("Player already exists, updating the score")
-          docRef.set({
-              name: name,
-              points: points,
-              date: new Date().toISOString()
-            }
-          )
-        } else if (!doc.exists) {
-          console.log("New player detected, insert new record")
-          firebase.firestore().collection('players').doc(name).set({
+    const docList = firebase.firestore().collection("players").where("name", "==", name).limit(1)
+    docList.get().then(docs => {
+      const doc = docs.docs.at(0)
+      if (doc != null && doc.exists && points > doc.get("points")) {
+        console.log("Player already exists, updating the score")
+        console.log(doc.id, " => ", doc.data());
+        doc.ref.set({
             name: name,
             points: points,
             date: new Date().toISOString()
-          });
-        }
+          }
+        )
+      } else if (doc == null || !doc.exists) {
+        console.log("New player detected, insert new record")
+        firebase.firestore().collection('players').doc().set({
+          name: name,
+          points: points,
+          date: new Date().toISOString()
+        });
       }
-    )
+    })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
   }
 
   async getPlayers() {
     const players: any = [];
-    const snapshot = await firebase.firestore().collection('players').get();
-    snapshot.forEach((doc) => players.push(doc.data()));
+    const docList = await firebase.firestore().collection("players").orderBy("points", "desc").get()
+    docList.forEach((doc) => {
+      console.log("Player: " + doc.data())
+      players.push(doc.data());
+    })
     return players
   }
 }
