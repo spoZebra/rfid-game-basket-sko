@@ -18,29 +18,31 @@ export class PlayerInputComponent implements OnInit {
   @ViewChild('playerName') playerName!: ElementRef;
 
   constructor(private router: Router, private playerService: PlayerService, private dbService: DbService) {
-    //this.resetInactivityTimer();
+    this.resetInactivityTimer();
   }
 
   ngOnInit() {
   }
 
-  /*@HostListener('window:mousemove', ['$event'])
+  @HostListener('window:mousemove', ['$event'])
   @HostListener('window:keypress', ['$event'])
   onUserActivity() {
     this.resetInactivityTimer();
-  }*/
+  }
 
-  /*  resetInactivityTimer() {
-      clearTimeout(this.inactivityTimer);
-      this.inactivityTimer = setTimeout(() => {
-        // Redirect to another component or perform your timeout action here
-        this.router.navigate(['/leaderboard']);
-      }, this.inactivityDuration);
-    }*/
+  resetInactivityTimer() {
+    clearTimeout(this.inactivityTimer);
+    this.inactivityTimer = setTimeout(() => {
+      // Redirect to another component or perform your timeout action here
+      this.router.navigate(['/leaderboard']);
+    }, this.inactivityDuration);
+  }
 
   navigateToGame() {
     console.log(this.playerName.nativeElement.value);
     this.playerService.setPlayerName(this.playerName.nativeElement.value.toUpperCase());
     this.router.navigate(['/cuntdown'])
+
+    clearTimeout(this.inactivityTimer);
   }
 }
