@@ -48,6 +48,9 @@ export class GameComponent implements OnInit {
 
   startGameTime() {
     setTimeout(() => {
+      // Stop reading
+      this.zIoTConnectorService.stopOperation()
+      
       console.log("Time is UP!")
       this.gameOverSound.play()
 
@@ -63,8 +66,6 @@ export class GameComponent implements OnInit {
   moveToLeaderboard() {
     setTimeout(() => {
 
-      // Stop reading
-      this.zIoTConnectorService.stopOperation()
 
       this.router.navigate(['/leaderboard']);
     }, GameConstants.GAME_END_TIMEOUT * 1000);
