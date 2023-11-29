@@ -71,8 +71,6 @@ export class GameComponent implements OnInit {
         this.getClosestPosition()
       }
     })
-    this.zIoTConnectorService.setReadMode()
-    this.zIoTConnectorService.setReaderConfig()
   }
 
   startGameTime() {

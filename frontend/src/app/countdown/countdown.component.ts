@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit, OnDestroy} from '@angular/core';
 import {GameConstants} from '../app-constants'
 import {Router} from '@angular/router';
+import { ZebraIoTConnectorService } from '../services/zebra-iot-connector-service';
 
 @Component({
   selector: 'app-countdown',
@@ -11,11 +12,13 @@ export class CountdownComponent implements OnInit, OnDestroy {
   countdown: number = GameConstants.GAME_READY_COUNTDOWN
   intervalId: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private zIoTConnectorService : ZebraIoTConnectorService) {
   }
 
   ngOnInit(): void {
     this.startCountdown();
+    this.zIoTConnectorService.setReadMode()
+    this.zIoTConnectorService.setReaderConfig()
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
