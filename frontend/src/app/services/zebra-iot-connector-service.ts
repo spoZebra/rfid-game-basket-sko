@@ -59,6 +59,11 @@ export class ZebraIoTConnectorService implements OnInit {
       this._mqttService.unsafePublish(this.managementInterfaceCmd, new SendCommandModel("set_mode", configRead).toJson(), { qos: 0, retain: false });
     });
   }
+  setReaderConfig() {
+    this.getConfigFile('rfconfig.json').subscribe(configRead => {
+      this._mqttService.unsafePublish(this.managementInterfaceCmd, new SendCommandModel("set_config", configRead).toJson(), { qos: 0, retain: false });
+    });
+  }
 /*
   setWriteMode(tagId : String, memoryBank : String, data : String) {
     this.getConfigFile('write-op-mode.json').subscribe(configWrite => {

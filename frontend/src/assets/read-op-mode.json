@@ -1,20 +1,27 @@
 {
-    "filter": {
-      "match": "prefix",
-      "operation": "include",
-      "value": ""
-    },
-    "modeSpecificSettings": {
-      "interval": {
-        "unit": "seconds",
-        "value": 1
-      }
-    },
-    "transmitPower": [
-      13,
-      13,
-      13,
-      13
-    ],
-    "type": "INVENTORY"
+  "type": "CUSTOM",
+  "antennas": [
+      1
+  ],
+  "transmitPower": [
+      6
+  ],
+  "linkProfile": 913,
+  "antennaStopCondition": {
+      "type": "DURATION",
+      "value": 6000
+  },
+  "query": {
+      "tagPopulation": 5,
+      "sel": "ALL",
+      "session": "S1",
+      "target": "A"
+  },
+  "tagMetaData": [
+      "ANTENNA"
+  ],
+  "reportFilter": {
+      "duration": 6,
+      "type": "RADIO_WIDE"
   }
+}

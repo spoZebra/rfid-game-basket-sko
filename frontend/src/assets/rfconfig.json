@@ -1,0 +1,217 @@
+{
+    "GPIO-LED": {
+      "GPODefaults": {
+        "1": "LOW",
+        "2": "LOW",
+        "3": "LOW",
+        "4": "LOW"
+      },
+      "RADIO_START": [
+        {
+          "blink": {
+            "DURATION": 500,
+            "OFF": 50,
+            "ON": 50
+          },
+          "pin": 2,
+          "state": "HIGH",
+          "type": "GPO"
+        }
+      ],
+      "RADIO_STOP": [
+        {
+          "blink": {
+            "DURATION": 5000,
+            "OFF": 100,
+            "ON": 100
+          },
+          "pin": 2,
+          "postActionState": "LOW",
+          "state": "HIGH",
+          "type": "GPO"
+        }
+      ],
+      "TAG_READ": [
+        {
+          "blink": {
+            "DURATION": 1000,
+            "OFF": 100,
+            "ON": 100
+          },
+          "pin": 1,
+          "postActionState": "LOW",
+          "state": "HIGH",
+          "type": "GPO"
+        }
+      ]
+    },
+    "READER-GATEWAY": {
+      "batching": [
+        {
+          "maxPayloadSizePerReport": 0,
+          "reportingInterval": 0
+        }
+      ],
+      "endpointConfig": {
+        "data": {
+          "event": {
+            "connections": [
+              {
+                "additionalOptions": {
+                  "batching": null,
+                  "retention": {
+                    "maxEventRetentionTimeInMin": 500,
+                    "maxNumEvents": 150000,
+                    "throttle": 100
+                  }
+                },
+                "description": "mqtt",
+                "name": "mqtt",
+                "options": {
+                  "additional": {
+                    "cleanSession": true,
+                    "clientId": "fx7500",
+                    "debug": false,
+                    "keepAlive": 60,
+                    "qos": 0,
+                    "reconnectDelay": 1,
+                    "reconnectDelayMax": 5
+                  },
+                  "enableSecurity": false,
+                  "endpoint": {
+                    "hostName": "192.168.137.1",
+                    "port": 1997,
+                    "protocol": "ws"
+                  },
+                  "publishTopic": [
+                    "data"
+                  ],
+                  "subscribeTopic": []
+                },
+                "type": "mqtt"
+              }
+            ]
+          }
+        }
+      },
+      "managementEventConfig": {
+        "errors": {
+          "antenna": false,
+          "cpu": {
+            "reportIntervalInSec": 1800,
+            "threshold": 90
+          },
+          "database": true,
+          "flash": {
+            "reportIntervalInSec": 1800,
+            "threshold": 90
+          },
+          "ntp": true,
+          "radio": true,
+          "radio_control": false,
+          "ram": {
+            "reportIntervalInSec": 1800,
+            "threshold": 90
+          },
+          "reader_gateway": true,
+          "userApp": {
+            "reportIntervalInSec": 1800,
+            "threshold": 120
+          }
+        },
+        "gpiEvents": true,
+        "heartbeat": {
+          "fields": {
+            "radio_control": [
+              "ANTENNAS",
+              "RADIO_ACTIVITY",
+              "RADIO_CONNECTION",
+              "CPU",
+              "RAM",
+              "UPTIME",
+              "NUM_ERRORS",
+              "NUM_WARNINGS",
+              "NUM_TAG_READS",
+              "NUM_TAG_READS_PER_ANTENNA",
+              "NUM_DATA_MESSAGES_TXED",
+              "NUM_RADIO_PACKETS_RXED"
+            ],
+            "reader_gateway": [
+              "NUM_DATA_MESSAGES_RXED",
+              "NUM_MANAGEMENT_EVENTS_TXED",
+              "NUM_DATA_MESSAGES_TXED",
+              "NUM_DATA_MESSAGES_RETAINED",
+              "NUM_DATA_MESSAGES_DROPPED",
+              "CPU",
+              "RAM",
+              "UPTIME",
+              "NUM_ERRORS",
+              "NUM_WARNINGS",
+              "INTERFACE_CONNECTION_STATUS",
+              "NOLOCKQ_DEPTH"
+            ],
+            "system": [
+              "CPU",
+              "FLASH",
+              "NTP",
+              "RAM",
+              "SYSTEMTIME",
+              "TEMPERATURE",
+              "UPTIME",
+              "GPO",
+              "GPI",
+              "POWER_NEGOTIATION",
+              "POWER_SOURCE"
+            ],
+            "userapps": [
+              "STATUS",
+              "CPU",
+              "RAM",
+              "UPTIME",
+              "NUM_DATA_MESSAGES_RXED",
+              "NUM_DATA_MESSAGES_TXED",
+              "INCOMING_DATA_BUFFER_PERCENTAGE_REMAINING",
+              "OUTGOING_DATA_BUFFER_PERCENTAGE_REMAINING"
+            ]
+          },
+          "interval": 60
+        },
+        "userappEvents": true,
+        "warnings": {
+          "cpu": {
+            "reportIntervalInSec": 1800,
+            "threshold": 80
+          },
+          "database": true,
+          "flash": {
+            "reportIntervalInSec": 1800,
+            "threshold": 80
+          },
+          "ntp": true,
+          "radio_api": true,
+          "radio_control": true,
+          "ram": {
+            "reportIntervalInSec": 1800,
+            "threshold": 80
+          },
+          "reader_gateway": true,
+          "temperature": {
+            "ambient": 75,
+            "pa": 105
+          },
+          "userApp": {
+            "reportIntervalInSec": 1800,
+            "threshold": 60
+          }
+        }
+      },
+      "retention": [
+        {
+          "maxEventRetentionTimeInMin": 500,
+          "maxNumEvents": 150000,
+          "throttle": 100
+        }
+      ]
+    },
+    "xml": "<?xml version='1.0'?>\n<Motorola xmlns:Falcon='http://www.motorola.com/RFID/Readers/Config/Falcon' xmlns='http://www.motorola.com/RFID/Readers/Config/Falcon'>\n<Config>\n<AppVersion major='3' minor='21' build='23' maintenance='0'/>\n<CommConfig EnabledStacks='Both' DisableRAPktProcessing='0' EnableDHCPv6='1' IPv6StaticIPAddr='fe80::1' IPv6SubnetMask='64' IPv6StaticGateway='::' IPv6DNSIP='fe80::20' DHCP='1' IPAddr='0.0.0.0' Mask='0.0.0.0' Gateway='0.0.0.0' DNS='0.0.0.0' DomainSearch='example.com' HttpRunning='2' TelnetActive='2' FtpActive='2' usbMode='0' WatchdogEnabled='1' AvahiEnabled='1' NetBIOSEnabled='0' RDMPAgentEnabled='1' SerialConTimeout='0' SNTP='0.0.0.0' SNTPHostName='pool.ntp.org' sntpHostDisplayMode='0' llrpClientMode='0' llrpSecureMode='0' llrpSecureModeValidatePeer='0' llrpPort='5084' llrpHostIP='192.168.127.2' allowllrpConnOverride='0' shouldReconnect='1'/>\n<Bluetooth discoverable='0' pairable='0' PincodeEnabled='0' passkey='165CB22DA5BE7BBEFB77709DD0A94B03FB77709DD0A94B03FB77709DD0A94B03FB77709DD0A94B03FB77709DD0A94B03FB77709DD0A94B03FB77709DD0A94B03' startIP='192.168.0.2' endIP='192.168.0.3'/>\n<WirelessConfig essid='' autoconnect='0'/>\n<RegionConfig RFCountry='European Union' RFRegulatory='EU 302.208' RFScanMode='1' LBTEnable='0' ChannelData='000000000000000F'/>\n<SnmpConfig snmpVersion='1' heartbeat='1'/>\n<SyslogConfig RemoteIp='0.0.0.0' RemotePort='514' LogMinSeverity='7' ApplyFilter='0' MinimumSeverity='7' ProcessFilter='rmserver.elf,llrpserver.elf,snmpextagent.elf,RDMPAgent'/>\n<UserList>\n<User name='admin' PSWD='$6$8pKfIUvl$TFWXcZmnXPaqVegoP2C6nIUqDoUelGX87gJPz5B6gt5PqxaTtOWMp6xTrhG8s0FSd01zcvGtdfqlyNT8Y0Mry1'/>\n<User name='rfidadm' PSWD='15491'/>\n</UserList>\n<IPReader name='FX7500FB8E80 FX7500 RFID Reader' desc='FX7500FB8E80 Advanced Reader' flags='0' MonoStatic='0' CheckAntenna='1' gpiDebounceTime='0' gpioMapping='0' idleModeTimeOut='0' diagMode='0' extDiagMode='0' contact='Zebra Technologies Corporation' PowerNegotiation='0' PowerNegotiationProtocol='0' allowGuestLogin='1' configureHostName='0'>\n<ReadPoint name='Read Point 1' flags='1' CableLossPerHundredFt='10' CableLength='10'/>\n<ReadPoint name='Read Point 2' flags='1' CableLossPerHundredFt='10' CableLength='10'/>\n</IPReader>\n<SerialPortConf Mode='2' Baudrate='115200' Databits='8' Parity='None' Stopbits='0' Flowcontrol='hardware' TagMetaData='0' InventoryControl='None' IsAutostart='0'/>\n<FXConnectConfig FXConnectMode='0' TagMetaData='0' InventoryControl='None' HeartBeatPeriod='0' IsAutostart='0' PreFilterMode='0' PreFilters='None'/>\n<ProfinetConfig virtualDAP='1'/>\n<NodeJSPortConf Portnumber='8001'/>\n</Config>\n<MOTOROLA_LLRP_CONFIG>\n<SET_READER_CONFIG MessageID='0'\n  xmlns:llrp='http://www.llrp.org/ltk/schema/core/encoding/xml/1.0'\n  xmlns='http://www.llrp.org/ltk/schema/core/encoding/xml/1.0'\n  xmlns:moto='http://www.motorola.com/RFID/Readers/LLRP/1.0.1'>\n  <ResetToFactoryDefault>false</ResetToFactoryDefault>\n    <ReaderEventNotificationSpec>\n    <EventNotificationState>\n      <EventType>Upon_Hopping_To_Next_Channel</EventType>\n      <NotificationState>false</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>GPI_Event</EventType>\n      <NotificationState>true</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>ROSpec_Event</EventType>\n      <NotificationState>true</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>Report_Buffer_Fill_Warning</EventType>\n      <NotificationState>true</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>Reader_Exception_Event</EventType>\n      <NotificationState>true</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>RFSurvey_Event</EventType>\n      <NotificationState>false</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>AISpec_Event</EventType>\n      <NotificationState>false</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>AISpec_Event_With_Details</EventType>\n      <NotificationState>false</NotificationState>\n          </EventNotificationState>\n    <EventNotificationState>\n      <EventType>Antenna_Event</EventType>\n      <NotificationState>true</NotificationState>\n          </EventNotificationState>\n  </ReaderEventNotificationSpec>\n  <AntennaConfiguration>\n    <AntennaID>1</AntennaID>\n    <RFReceiver>\n      <ReceiverSensitivity>0</ReceiverSensitivity>\n    </RFReceiver>\n    <RFTransmitter>\n      <HopTableID>1</HopTableID>\n      <ChannelIndex>1</ChannelIndex>\n      <TransmitPower>192</TransmitPower>\n    </RFTransmitter>\n    <C1G2InventoryCommand>\n      <TagInventoryStateAware>false</TagInventoryStateAware>\n            <C1G2RFControl>\n        <ModeIndex>0</ModeIndex>\n        <Tari>0</Tari>\n      </C1G2RFControl>\n      <C1G2SingulationControl>\n        <Session>0</Session>\n                <TagPopulation>100</TagPopulation>\n        <TagTransitTime>0</TagTransitTime>\n        <C1G2TagInventoryStateAwareSingulationAction>\n          <I>false</I>\n          <S>true</S>\n                  </C1G2TagInventoryStateAwareSingulationAction>\n      </C1G2SingulationControl>\n      <moto:MotoAntennaConfig>\n        <moto:MotoAntennaStopCondition>\n          <moto:AntennaStopTrigger>Dwell_Time</moto:AntennaStopTrigger>\n          <moto:AntennaStopConditionValue>1000</moto:AntennaStopConditionValue>\n        </moto:MotoAntennaStopCondition>\n        <moto:MotoAntennaPhysicalPortConfig>\n          <moto:PhysicalTransmitPort>1</moto:PhysicalTransmitPort>\n          <moto:PhysicalReceivePort>1</moto:PhysicalReceivePort>\n        </moto:MotoAntennaPhysicalPortConfig>\n        <moto:MotoAntennaQueryConfig>\n          <moto:EnableSLAll>false</moto:EnableSLAll>\n          <moto:EnableABFlip>false</moto:EnableABFlip>\n                  </moto:MotoAntennaQueryConfig>\n      </moto:MotoAntennaConfig>\n    </C1G2InventoryCommand>\n  </AntennaConfiguration>\n  <AntennaConfiguration>\n    <AntennaID>2</AntennaID>\n    <RFReceiver>\n      <ReceiverSensitivity>0</ReceiverSensitivity>\n    </RFReceiver>\n    <RFTransmitter>\n      <HopTableID>1</HopTableID>\n      <ChannelIndex>1</ChannelIndex>\n      <TransmitPower>192</TransmitPower>\n    </RFTransmitter>\n    <C1G2InventoryCommand>\n      <TagInventoryStateAware>false</TagInventoryStateAware>\n            <C1G2RFControl>\n        <ModeIndex>0</ModeIndex>\n        <Tari>0</Tari>\n      </C1G2RFControl>\n      <C1G2SingulationControl>\n        <Session>0</Session>\n                <TagPopulation>100</TagPopulation>\n        <TagTransitTime>0</TagTransitTime>\n        <C1G2TagInventoryStateAwareSingulationAction>\n          <I>false</I>\n          <S>true</S>\n                  </C1G2TagInventoryStateAwareSingulationAction>\n      </C1G2SingulationControl>\n      <moto:MotoAntennaConfig>\n        <moto:MotoAntennaStopCondition>\n          <moto:AntennaStopTrigger>Dwell_Time</moto:AntennaStopTrigger>\n          <moto:AntennaStopConditionValue>1000</moto:AntennaStopConditionValue>\n        </moto:MotoAntennaStopCondition>\n        <moto:MotoAntennaPhysicalPortConfig>\n          <moto:PhysicalTransmitPort>2</moto:PhysicalTransmitPort>\n          <moto:PhysicalReceivePort>2</moto:PhysicalReceivePort>\n        </moto:MotoAntennaPhysicalPortConfig>\n        <moto:MotoAntennaQueryConfig>\n          <moto:EnableSLAll>false</moto:EnableSLAll>\n          <moto:EnableABFlip>false</moto:EnableABFlip>\n                  </moto:MotoAntennaQueryConfig>\n      </moto:MotoAntennaConfig>\n    </C1G2InventoryCommand>\n  </AntennaConfiguration>\n  <ROReportSpec>\n    <ROReportTrigger>None</ROReportTrigger>\n    <N>0</N>\n    <TagReportContentSelector>\n      <EnableROSpecID>true</EnableROSpecID>\n      <EnableSpecIndex>false</EnableSpecIndex>\n      <EnableInventoryParameterSpecID>false</EnableInventoryParameterSpecID>\n      <EnableAntennaID>true</EnableAntennaID>\n      <EnableChannelIndex>true</EnableChannelIndex>\n      <EnablePeakRSSI>true</EnablePeakRSSI>\n      <EnableFirstSeenTimestamp>true</EnableFirstSeenTimestamp>\n      <EnableLastSeenTimestamp>true</EnableLastSeenTimestamp>\n      <EnableTagSeenCount>true</EnableTagSeenCount>\n      <EnableAccessSpecID>true</EnableAccessSpecID>\n            <C1G2EPCMemorySelector>\n        <EnableCRC>true</EnableCRC>\n        <EnablePCBits>true</EnablePCBits>\n              </C1G2EPCMemorySelector>\n    </TagReportContentSelector>\n    <moto:MotoTagReportContentSelector>\n      <moto:EnableZoneID>true</moto:EnableZoneID>\n      <moto:EnableZoneName>true</moto:EnableZoneName>\n      <moto:EnableAntennaPhysicalPortConfig>true</moto:EnableAntennaPhysicalPortConfig>\n      <moto:EnablePhase>true</moto:EnablePhase>\n      <moto:EnableBrandIDCheckStatus>false</moto:EnableBrandIDCheckStatus>\n      <moto:EnableGPS>false</moto:EnableGPS>\n      <moto:EnableInterlacedTID>false</moto:EnableInterlacedTID>\n          </moto:MotoTagReportContentSelector>\n  </ROReportSpec>\n  <AccessReportSpec>\n    <AccessReportTrigger>Whenever_ROReport_Is_Generated</AccessReportTrigger>\n  </AccessReportSpec>\n  <KeepaliveSpec>\n    <KeepaliveTriggerType>Periodic</KeepaliveTriggerType>\n    <PeriodicTriggerValue>10000</PeriodicTriggerValue>\n  </KeepaliveSpec>\n  <GPOWriteData>\n    <GPOPortNumber>1</GPOPortNumber>\n    <GPOData>false</GPOData>\n      </GPOWriteData>\n  <GPOWriteData>\n    <GPOPortNumber>2</GPOPortNumber>\n    <GPOData>false</GPOData>\n      </GPOWriteData>\n  <GPOWriteData>\n    <GPOPortNumber>3</GPOPortNumber>\n    <GPOData>false</GPOData>\n      </GPOWriteData>\n  <GPIPortCurrentState>\n    <GPIPortNum>1</GPIPortNum>\n    <Config>true</Config>\n        <State>Low</State>\n  </GPIPortCurrentState>\n  <GPIPortCurrentState>\n    <GPIPortNum>2</GPIPortNum>\n    <Config>true</Config>\n        <State>High</State>\n  </GPIPortCurrentState>\n  <EventsAndReports>\n    <HoldEventsAndReportsUponReconnect>true</HoldEventsAndReportsUponReconnect>\n      </EventsAndReports>\n  <moto:MotoAutonomousState>\n    <moto:AutonomousModeState>false</moto:AutonomousModeState>\n      </moto:MotoAutonomousState>\n  <moto:MotoFilterList>\n    <moto:UseFilter>false</moto:UseFilter>\n      </moto:MotoFilterList>\n  <moto:MotoPersistenceSaveParams>\n    <moto:SaveConfiguration>true</moto:SaveConfiguration>\n    <moto:SaveTagData>true</moto:SaveTagData>\n    <moto:SaveTagEventData>true</moto:SaveTagEventData>\n      </moto:MotoPersistenceSaveParams>\n  <moto:MotoDefaultSpec>\n    <moto:UseDefaultSpecForAutoMode>true</moto:UseDefaultSpecForAutoMode>\n        <ROSpec>\n      <ROSpecID>1001</ROSpecID>\n      <Priority>7</Priority>\n      <CurrentState>Inactive</CurrentState>\n      <ROBoundarySpec>\n        <ROSpecStartTrigger>\n          <ROSpecStartTriggerType>Immediate</ROSpecStartTriggerType>\n        </ROSpecStartTrigger>\n        <ROSpecStopTrigger>\n          <ROSpecStopTriggerType>Null</ROSpecStopTriggerType>\n          <DurationTriggerValue>0</DurationTriggerValue>\n        </ROSpecStopTrigger>\n      </ROBoundarySpec>\n      <AISpec>\n        <AntennaIDs>0</AntennaIDs>\n        <AISpecStopTrigger>\n          <AISpecStopTriggerType>Null</AISpecStopTriggerType>\n          <DurationTrigger>0</DurationTrigger>\n        </AISpecStopTrigger>\n        <InventoryParameterSpec>\n          <InventoryParameterSpecID>1001</InventoryParameterSpecID>\n          <ProtocolID>EPCGlobalClass1Gen2</ProtocolID>\n        </InventoryParameterSpec>\n      </AISpec>\n      <ROReportSpec>\n        <ROReportTrigger>None</ROReportTrigger>\n        <N>0</N>\n        <TagReportContentSelector>\n          <EnableROSpecID>true</EnableROSpecID>\n          <EnableSpecIndex>false</EnableSpecIndex>\n          <EnableInventoryParameterSpecID>false</EnableInventoryParameterSpecID>\n          <EnableAntennaID>true</EnableAntennaID>\n          <EnableChannelIndex>false</EnableChannelIndex>\n          <EnablePeakRSSI>true</EnablePeakRSSI>\n          <EnableFirstSeenTimestamp>true</EnableFirstSeenTimestamp>\n          <EnableLastSeenTimestamp>true</EnableLastSeenTimestamp>\n          <EnableTagSeenCount>true</EnableTagSeenCount>\n          <EnableAccessSpecID>false</EnableAccessSpecID>\n                    <C1G2EPCMemorySelector>\n            <EnableCRC>true</EnableCRC>\n            <EnablePCBits>true</EnablePCBits>\n                      </C1G2EPCMemorySelector>\n        </TagReportContentSelector>\n        <moto:MotoTagReportContentSelector>\n          <moto:EnableZoneID>false</moto:EnableZoneID>\n          <moto:EnableZoneName>false</moto:EnableZoneName>\n          <moto:EnableAntennaPhysicalPortConfig>false</moto:EnableAntennaPhysicalPortConfig>\n          <moto:EnablePhase>false</moto:EnablePhase>\n          <moto:EnableBrandIDCheckStatus>false</moto:EnableBrandIDCheckStatus>\n          <moto:EnableGPS>false</moto:EnableGPS>\n          <moto:EnableInterlacedTID>false</moto:EnableInterlacedTID>\n                  </moto:MotoTagReportContentSelector>\n        <moto:MotoTagReportMode>\n          <moto:ReportFormat>Report_Notifications</moto:ReportFormat>\n        </moto:MotoTagReportMode>\n        <moto:MotoTagEventSelector>\n          <moto:ReportNewTagEvent>Immediate</moto:ReportNewTagEvent>\n          <moto:NewTagEventModeratedTimeout>0</moto:NewTagEventModeratedTimeout>\n          <moto:ReportTagInvisibleEvent>Moderated</moto:ReportTagInvisibleEvent>\n          <moto:TagInvisibleEventModeratedTimeout>8000</moto:TagInvisibleEventModeratedTimeout>\n          <moto:ReportTagVisibilityChangeEvent>Immediate</moto:ReportTagVisibilityChangeEvent>\n          <moto:TagVisibilityChangeEventModeratedTimeout>0</moto:TagVisibilityChangeEventModeratedTimeout>\n        </moto:MotoTagEventSelector>\n      </ROReportSpec>\n    </ROSpec>\n  </moto:MotoDefaultSpec>\n  <moto:MotoRadioPowerState>\n    <moto:RadioPowerState>true</moto:RadioPowerState>\n      </moto:MotoRadioPowerState>\n  <moto:MotoRadioTransmitDelay>\n    <moto:Type>On_No_Tag</moto:Type>\n    <moto:Time>40</moto:Time>\n  </moto:MotoRadioTransmitDelay>\n  <moto:MotoRadioDutyCycle>\n    <moto:DutyCycleIndex>0</moto:DutyCycleIndex>\n  </moto:MotoRadioDutyCycle>\n  <moto:MotoCustomCommandOptions>\n    <moto:EnableNXPSetAndResetQuietCommands>true</moto:EnableNXPSetAndResetQuietCommands>\n      </moto:MotoCustomCommandOptions>\n  <moto:MotoUSBHostParams>\n    <moto:USBHostTurnOnTime>-1</moto:USBHostTurnOnTime>\n      </moto:MotoUSBHostParams>\n  <moto:SetReaderHeight>\n    <moto:ReaderHeight>10</moto:ReaderHeight>\n  </moto:SetReaderHeight>\n  <moto:SetTagHeight>\n    <moto:TagHeight>4</moto:TagHeight>\n  </moto:SetTagHeight>\n  <moto:MotoMLTAlgorithmConfiguration>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>1</moto:Antenna>\n      <moto:Xpseudo>1495</moto:Xpseudo>\n      <moto:Ypseudo>1363</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>3</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>2</moto:Antenna>\n      <moto:Xpseudo>1368</moto:Xpseudo>\n      <moto:Ypseudo>1416</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>253</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>3</moto:Antenna>\n      <moto:Xpseudo>1241</moto:Xpseudo>\n      <moto:Ypseudo>1363</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>3</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>4</moto:Antenna>\n      <moto:Xpseudo>1188</moto:Xpseudo>\n      <moto:Ypseudo>1236</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>253</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>5</moto:Antenna>\n      <moto:Xpseudo>1241</moto:Xpseudo>\n      <moto:Ypseudo>1109</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>0</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>6</moto:Antenna>\n      <moto:Xpseudo>1368</moto:Xpseudo>\n      <moto:Ypseudo>1056</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>0</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>7</moto:Antenna>\n      <moto:Xpseudo>1495</moto:Xpseudo>\n      <moto:Ypseudo>1109</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>0</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoAntennaMapTable>\n      <moto:Antenna>8</moto:Antenna>\n      <moto:Xpseudo>1548</moto:Xpseudo>\n      <moto:Ypseudo>1236</moto:Ypseudo>\n      <moto:Zpseudo>0</moto:Zpseudo>\n      <moto:AntennaGroup>0</moto:AntennaGroup>\n    </moto:MotoAntennaMapTable>\n    <moto:MotoTransitionSlopeTable>\n      <moto:Slope>1000</moto:Slope>\n      <moto:Direction>2</moto:Direction>\n    </moto:MotoTransitionSlopeTable>\n    <moto:MotoTransitionSlopeTable>\n      <moto:Slope>18</moto:Slope>\n      <moto:Direction>-1</moto:Direction>\n    </moto:MotoTransitionSlopeTable>\n    <moto:MotoTransitionSlopeTable>\n      <moto:Slope>-18</moto:Slope>\n      <moto:Direction>-1</moto:Direction>\n    </moto:MotoTransitionSlopeTable>\n    <moto:MotoTransitionSlopeTable>\n      <moto:Slope>-1000</moto:Slope>\n      <moto:Direction>3</moto:Direction>\n    </moto:MotoTransitionSlopeTable>\n    <moto:MotoTimeWindowSizeParams>\n      <moto:MovementTime>32</moto:MovementTime>\n      <moto:LocationTime>24</moto:LocationTime>\n      <moto:TransitionTime>16</moto:TransitionTime>\n      <moto:BucketSize>1</moto:BucketSize>\n    </moto:MotoTimeWindowSizeParams>\n    <moto:MotoTimeLimitParams>\n      <moto:MotionDelay>40</moto:MotionDelay>\n      <moto:LostEventDelay>30</moto:LostEventDelay>\n    </moto:MotoTimeLimitParams>\n    <moto:MotoReaderTypeParams>\n      <moto:ReaderType>Transition_Reader</moto:ReaderType>\n    </moto:MotoReaderTypeParams>\n  </moto:MotoMLTAlgorithmConfiguration>\n</SET_READER_CONFIG>\n</MOTOROLA_LLRP_CONFIG>\n<IOT_CONNECT_CONFIG><OPERATING_MODE Config='{\"antennaStopCondition\":[{\"type\":\"DURATION\",\"value\":1000},{\"type\":\"DURATION\",\"value\":1000}],\"antennas\":[1,2],\"linkProfile\":[4,4],\"query\":[{\"sel\":\"ALL\",\"session\":\"S0\",\"tagPopulation\":100,\"target\":\"AB\"},{\"sel\":\"ALL\",\"session\":\"S0\",\"tagPopulation\":100,\"target\":\"AB\"}],\"reportFilter\":{\"duration\":0,\"type\":\"PER_ANTENNA\"},\"tagMetaData\":[\"ANTENNA\",\"RSSI\",\"SEEN_COUNT\",\"CHANNEL\",\"CRC\",\"PC\",\"PHASE\"],\"transmitPower\":[29.2,29.2],\"type\":\"CUSTOM\"}'/></IOT_CONNECT_CONFIG>\n<RadioProfileData><RadioRegisterData Address='0' Data='00'/>\n</RadioProfileData>\n<CustomProfileData ForceEAPMode='0' FIPS_MODE_ENABLED='0' MaxNumberOfTagsBuffered='512'/>\n</Motorola >\n"
+  }
