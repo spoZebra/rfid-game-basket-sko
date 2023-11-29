@@ -3,9 +3,17 @@
     <svg viewBox="-50 -50 100 100" stroke-width="10">
       <circle r="45"></circle>
       <circle r="45" pathLength="1"></circle>
-      <text x="0" y="0" [style.font-size]="'2.5vmin'" text-anchor="middle" alignment-baseline="middle"
-            [style.fill]="countdownTextColor">
+      <text x="0" y="8" [style.font-size]="'2.0vmin'" text-anchor="middle" alignment-baseline="after-edge"
+            [style.fill]="pointsTextColor">
         {{ points }}
+      </text>
+      <text x="0" y="6" [style.font-size]="'calculateFontSize()'" text-anchor="middle" alignment-baseline="before-edge"
+            [style.fill]="positionTextColor">
+        Position
+      </text>
+      <text x="0" y="20" [style.font-size]="'calculateSubTextFontSize()'" text-anchor="middle" alignment-baseline="before-edge"
+            [style.fill]="positionTextColor">
+        {{ position }}
       </text>
     </svg>
   </div>
