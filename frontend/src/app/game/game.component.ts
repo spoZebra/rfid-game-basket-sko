@@ -72,10 +72,11 @@ export class GameComponent implements OnInit {
       }
     })
     this.zIoTConnectorService.setReadMode()
-    this.zIoTConnectorService.startOperation()
+    this.zIoTConnectorService.setReaderConfig()
   }
 
   startGameTime() {
+    this.zIoTConnectorService.startOperation()
     this.intervalId = setTimeout(() => {
       // Stop reading
       this.zIoTConnectorService.stopOperation()
