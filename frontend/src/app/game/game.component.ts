@@ -40,55 +40,14 @@ export class GameComponent implements OnInit {
         }
         else{
           this.points++
-        }
-        
-        /*1,HI,1000
-        2,HI,1000
-        3,LO,0
-        4,LO,0*/
-        this.zIoTConnectorService.setGPOState(1, true)
-        this.zIoTConnectorService.setGPOState(2, true)
-        
-        setTimeout(() => {
-          this.zIoTConnectorService.setGPOState(1, false)
-          this.zIoTConnectorService.setGPOState(2, false)
-        }, 1000);
+        } 
       })
-
-      //this.zIoTConnectorService.setReadMode()
-      
-      /*1,HI,1000
-      2,HI,1000
-      3,LO,0
-      4,LO,0*/
-      this.zIoTConnectorService.setGPOState(1, true)
-      this.zIoTConnectorService.setGPOState(2, true)
-      this.zIoTConnectorService.setGPOState(3, false)
-      this.zIoTConnectorService.setGPOState(4, false)
+      this.zIoTConnectorService.setReadMode()
       this.zIoTConnectorService.startOperation()
-      
-      setTimeout(() => {
-        this.zIoTConnectorService.setGPOState(1, false)
-        this.zIoTConnectorService.setGPOState(2, false)
-      }, 1000);
   }
 
   startGameTime() {
     setTimeout(() => {
-      /*1,LO,0
-      2,LO,0
-      3,HI,var_GameEnd
-      4,HI,var_GameEnd*/
-      this.zIoTConnectorService.setGPOState(1, false)
-      this.zIoTConnectorService.setGPOState(2, false)
-      this.zIoTConnectorService.setGPOState(3, true)
-      this.zIoTConnectorService.setGPOState(4, true)
-
-      setTimeout(() => {
-        this.zIoTConnectorService.setGPOState(3, false)
-        this.zIoTConnectorService.setGPOState(4, false)
-      }, GameConstants.GAME_END_TIMEOUT * 1000);
-
       // Stop reading
       this.zIoTConnectorService.stopOperation()
       
