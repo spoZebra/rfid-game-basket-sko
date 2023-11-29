@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GameConstants} from '../app-constants'
 import {PlayerService} from '../services/player.service'
@@ -11,7 +11,7 @@ import {DbService} from "../services/database.service";
   templateUrl: './player-input.component.html',
   styleUrls: ['./player-input.component.css']
 })
-export class PlayerInputComponent implements OnInit {
+export class PlayerInputComponent implements OnInit, AfterViewInit {
   private inactivityTimer: any;
   private inactivityDuration = GameConstants.PLAYER_INPUT_TIMEOUT;
 
@@ -22,6 +22,10 @@ export class PlayerInputComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.playerName.nativeElement.focus();
   }
 
   @HostListener('window:mousemove', ['$event'])
@@ -39,9 +43,13 @@ export class PlayerInputComponent implements OnInit {
   }
 
   navigateToGame() {
+    if (this.playerName.nativeElement.value == "") {
+      return
+    }
+
     console.log(this.playerName.nativeElement.value);
     this.playerService.setPlayerName(this.playerName.nativeElement.value.toUpperCase());
-    this.router.navigate(['/cuntdown'])
+    this.router.navigate(['/countdown'])
 
     clearTimeout(this.inactivityTimer);
   }

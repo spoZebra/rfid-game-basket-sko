@@ -1,13 +1,13 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
-import { GameConstants } from '../app-constants'
-import { Router } from '@angular/router';
+import {Component, HostListener, OnInit, OnDestroy} from '@angular/core';
+import {GameConstants} from '../app-constants'
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-cuntdown',
-  templateUrl: './cuntdown.component.html',
-  styleUrls: ['./cuntdown.component.css']
+  selector: 'app-countdown',
+  templateUrl: './countdown.component.html',
+  styleUrls: ['./countdown.component.css']
 })
-export class CuntdownComponent implements OnInit, OnDestroy {
+export class CountdownComponent implements OnInit, OnDestroy {
   countdown: number = GameConstants.GAME_READY_COUNTDOWN
   intervalId: any;
 
@@ -18,9 +18,7 @@ export class CuntdownComponent implements OnInit, OnDestroy {
     this.startCountdown();
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscapeKey(event: KeyboardEvent): void {
-    // Navigate to the previous component when the Escape key is pressed
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.router.navigate(['/']);
   }
 

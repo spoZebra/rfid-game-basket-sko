@@ -1,5 +1,5 @@
 <div class="content">
-    <p>Player Name</p>
-    <input #playerName type="text" class="form-control">
-    <button (click)="navigateToGame()" class="button">START</button>
+  <p>Player Name</p>
+  <input (keydown.enter)="navigateToGame()" class="form-control" #playerName type="text" autofocus>
+  <button (click)="navigateToGame()" class="button">START</button>
 </div>

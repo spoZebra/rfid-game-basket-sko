@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CuntdownComponent } from './cuntdown.component';
+import { CountdownComponent } from './countdown.component';
 
 describe('CuntdownComponent', () => {
-  let component: CuntdownComponent;
-  let fixture: ComponentFixture<CuntdownComponent>;
+  let component: CountdownComponent;
+  let fixture: ComponentFixture<CountdownComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CuntdownComponent]
+      declarations: [CountdownComponent]
     });
-    fixture = TestBed.createComponent(CuntdownComponent);
+    fixture = TestBed.createComponent(CountdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
