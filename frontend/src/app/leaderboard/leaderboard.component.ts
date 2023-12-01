@@ -49,8 +49,11 @@ export class LeaderboardComponent implements OnInit {
     this.animationState = this.animationState === 'start' ? 'end' : 'start';
   }
 
-  @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    this.router.navigate(['player-input']);
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape' || event.key === 'x' || event.key === 'X') {
+      event.preventDefault();
+      this.router.navigate(['player-input']);
+    }
   }
 }

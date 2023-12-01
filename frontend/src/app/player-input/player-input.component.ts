@@ -26,6 +26,7 @@ export class PlayerInputComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.playerName.nativeElement.focus();
+    this.playerName.nativeElement.value = ""
   }
 
   @HostListener('window:mousemove', ['$event'])

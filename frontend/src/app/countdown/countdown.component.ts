@@ -21,8 +21,12 @@ export class CountdownComponent implements OnInit, OnDestroy {
     this.zIoTConnectorService.setReaderConfig()
   }
 
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    this.router.navigate(['/']);
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape' || event.key === 'x' || event.key === 'X') {
+      event.preventDefault();
+      this.router.navigate(['player-input']);
+    }
   }
 
   startCountdown() {

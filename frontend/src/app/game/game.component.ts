@@ -38,24 +38,8 @@ export class GameComponent implements OnInit {
 
       this.configureIot()
       this.startGameTime()
-      this.position = players.length
-      this.getApproximatePosition()
+      this.position = players.length + 1
     });
-  }
-
-  calculateFontSize(): string {
-    const baseFontSize = 5;
-    const scaleFactor = 0.8;
-
-    return `max(${baseFontSize * scaleFactor}vmin, min(${baseFontSize}vmin, 5vmin))`;
-  }
-
-  calculateSubTextFontSize(): string {
-    // Adjust the font size for the new line of text
-    const baseSubTextFontSize = 3;
-    const scaleFactorSubText = 0.8;
-
-    return `max(${baseSubTextFontSize * scaleFactorSubText}vmin, min(${baseSubTextFontSize}vmin, 3vmin))`;
   }
 
   configureIot() {
@@ -82,41 +66,89 @@ export class GameComponent implements OnInit {
       console.log("Time is UP!")
       this.gameOverSound.play()
 
-      if (this.playerService.getPlayerName() != "TEST" || this.playerService.getPlayerName() != "") {
-        this.dbService.insertPlayer(this.playerService.getPlayerName(), this.points)
-      } else {
+      if (this.playerService.getPlayerName() === "TEST" ||
+        this.playerService.getPlayerName() === "TEST TEST" ||
+        this.playerService.getPlayerName() === ""
+      ) {
         console.log("Test player detected, skipping insertion...")
+        this.moveToLeaderboard()
+        return
       }
+
+      this.dbService.insertPlayer(this.playerService.getPlayerName(), this.points)
       this.moveToLeaderboard()
     }, GameConstants.GAME_SESSION_TIME * 1000);
   }
 
   getClosestPosition() {
-    let closestIndex: number = this.players.length
+    let closestIndex: number = 1
     let closestDifference: number;
 
-    this.players.forEach((player, index) => {
-      const difference = Math.abs(this.points - player.points);
+    if (this.players.length == 0 || this.position == 1) {
+      console.log("No need to go for the loop, directly applying position 1");
+      this.position = 1
+      return
+    }
 
-      if (closestDifference === undefined || difference < closestDifference) {
+    let nextPosition: number = this.players.length + 1
+
+    this.players.forEach((player, index) => {
+      if ((this.points >= player.points)) {
+        nextPosition--
+        console.log("Closest index: " + nextPosition);
+      }
+
+
+      //const difference = Math.abs(this.points - player.points);
+
+      /*if (closestDifference === undefined || difference < closestDifference) {
         closestIndex = index;
         closestDifference = difference;
-      }
+        console.log("Closest index: " + closestIndex);
+      }*/
     });
 
-    this.position = closestIndex + 1
+    this.position = nextPosition
+
+    // If the array is not empty and the new player has a score greater than the closest player,
+    // update the position to be after the closest player
+    /*if (this.players.length == 0) {
+      this.position = closestIndex
+    } else {
+      this.position = closestIndex + 2
+    }*/
+
+    /*} else if (this.players.length > 0 && this.points > this.players[closestIndex].points) {
+      this.position = closestIndex + 1; // Place after the closest player
+    } else if (this.players.length > 0 && this.points == this.players[closestIndex].points) {
+      this.position = closestIndex + 2
+    } else if (this.players.length > 0 && this.points < this.players[closestIndex].points) {
+      this.position = closestIndex + 3*/
+    //}else {
+    //console.error("Case not being handled!")
+    //}
+
     console.log("Closest position: " + this.position);
   }
 
-  getApproximatePosition() {
-    this.players.forEach((player, index) => {
-      if (this.points > player.points) {
-        this.position = index++
-        console.log("Currently position.." + this.position)
-      } else {
-        return;
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.key === 'Escape' || event.key === 'x' || event.key === 'X') {
+      event.preventDefault();
+
+      // Stop reading
+      this.zIoTConnectorService.stopOperation()
+      this.playerService.setPlayerName("")
+
+      if (this.intervalId) {
+        clearTimeout(this.intervalId);
       }
-    })
+
+      this.router.navigate(['player-input']);
+    } else if (event.key === '+') {
+      this.points++
+      this.getClosestPosition()
+    }
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
